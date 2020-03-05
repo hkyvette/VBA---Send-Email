@@ -1,0 +1,1658 @@
+Sub dateDefine()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+Else
+    currentDay = Now() - 1
+End If
+MsgBox Year(Now) & Format(Date, "mm") & Format(currentDay, "dd")
+End Sub
+Sub SendOptionsReport707()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "andrew.weng@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0707\"
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendOptionsReport113()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "ronald.lam@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0113\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC113\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+
+Sub SendOptionsReport18()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "clive.hui@swhyhk.com; henry.ma@swhyhk.com;mandy.yeung@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0018\"
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+End Sub
+Sub SendOptionsReport120()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "mary.tau@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0120\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC120\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+
+End Sub
+Sub SendOptionsReport141()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "christine.lai@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC141\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0141\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+
+End Sub
+Sub SendOptionsReport30()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "joanna.chan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0030\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+End Sub
+Sub SendOptionsReport171()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "arron.lai@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "OPT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0171\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+End Sub
+Sub SendFuturesReport8()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "roy.lee@swhyhk.com;agnes.chan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0008\"
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport18()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "clive.hui@swhyhk.com; henry.ma@swhyhk.com;mandy.yeung@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0018\"
+
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport20()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "annie.chin@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0020\"
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport30()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "joanna.chan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0030\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport76()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "raymond.kwong@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0076\"
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport113()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "ronald.lam@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0113\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC113\"
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport118()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "freddie.kwan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0118\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport120()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "mary.tau@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0120\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC120\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Stock Options Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+
+Sub SendFuturesReport123()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "selina.shum@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0123\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+
+Sub SendFuturesReport126()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "cora.ching@swhyhk.com; chingcora320@hotmail.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0126\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport126P()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "cora.ching@swhyhk.com; chingcora320@hotmail.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C126P\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport132B()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "candice.wong@swhyhk.com; shirley.wong@swhyhk.com "
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C132B\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport141()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "christine.lai@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0141\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport148()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "ben.chan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0148\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+
+End Sub
+
+Sub SendFuturesReport163()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "candy.zhang@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0163\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport160_162()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "carey.xiao@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0160\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0162\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+
+Sub SendFuturesReport115()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "henry.ma@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC115\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport704()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "wendy.kwan@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC704\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0704\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+End Sub
+
+
+Sub SendFuturesReport816()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath1 As String
+Dim strPath2 As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "andrew.sit@swhyhk.com"
+
+'define where we look for our folder full of xls files
+strPath1 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\XC816\"
+strPath2 = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0816\"
+
+If Dir(strPath1) = "" And Dir(strPath2) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) = "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+
+ElseIf Dir(strPath1) = "" And Dir(strPath2) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+ElseIf Dir(strPath1) <> "" And Dir(strPath2) <> "" Then
+
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath1 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath1 + strFile
+      strFile = Dir
+      Loop
+       .Display
+    End With
+    
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath2 & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath2 + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+Sub SendFuturesReport707()
+Dim currentDay As Date
+If Weekday(Now(), vbMonday) = 1 Then
+    currentDay = Now() - 2
+    
+ElseIf Weekday(Now(), vbMonday) = 6 Or Weekday(Now(), vbMonday) = 7 Then
+    currentDay = ""
+    
+Else
+    currentDay = Now() - 1
+    
+End If
+Dim strFile As String
+Dim strPath As String
+Dim CCnames As String
+Dim TOnames As String
+Dim appOutLook As Outlook.Application
+Dim MailOutLook As Outlook.MailItem
+Set appOutLook = CreateObject("Outlook.Application")
+Set MailOutLook = appOutLook.CreateItem(olMailItem)
+CCnames = "fannie.hui@swhyhk.com; kishi.cheng@swhyhk.com"
+TOnames = "andrew.weng@swhyhk.com"
+'define where we look for our folder full of xls files
+strPath = "G:\C\" & Year(Now) & Format(Date, "mm") & "\GMI\" & "FUT_RPT_CTEAM_GMI_" & Year(Now) & Format(Date, "mm") & Format(currentDay, "dd") & "\C0707\"
+
+If Dir(strPath) = "" Then
+    Exit Sub
+    
+ElseIf Dir(strPath) <> "" Then
+    With MailOutLook 'apply to each new email window
+      .To = TOnames
+      .CC = CCnames
+      .Subject = "Futures Report" & " " & Format(currentDay, "dd") & "/" & Format(Date, "mm") & "/" & Year(Now)
+      '~~> *.* for all files
+      strFile = Dir(strPath & "*.xls*")
+      'loop that directory
+      Do While Len(strFile) > 0
+      .Attachments.Add strPath + strFile
+      strFile = Dir
+      Loop
+       .Send
+    End With
+End If
+'message box when the loop finishes
+'MsgBox "Done!", vbOKOnly
+End Sub
+
+Sub SendAllEmailAtOnce()
+Call SendFuturesReport816
+Call SendFuturesReport704
+Call SendFuturesReport115
+Call SendFuturesReport163
+Call SendFuturesReport160_162
+Call SendFuturesReport148
+Call SendFuturesReport141
+Call SendFuturesReport132B
+Call SendFuturesReport126
+Call SendFuturesReport126P
+Call SendFuturesReport123
+Call SendFuturesReport120
+Call SendFuturesReport118
+Call SendFuturesReport113
+Call SendFuturesReport707
+Call SendFuturesReport76
+Call SendFuturesReport30
+Call SendFuturesReport20
+Call SendFuturesReport18
+Call SendFuturesReport8
+Call SendOptionsReport18
+Call SendOptionsReport30
+Call SendOptionsReport120
+Call SendOptionsReport141
+Call SendOptionsReport113
+Call SendOptionsReport707
+Call SendOptionsReport171
+MsgBox "Email Sent Successfully!", vbOKOnly
+End Sub
